@@ -30,7 +30,7 @@ const LogoutPage = ({ user, setUser }) => {
 
   return (
     <>
-      <Header title="Logout" />
+      <Header />
       <p>{error ? error.message : "Logging out..."}</p>
     </>
   );

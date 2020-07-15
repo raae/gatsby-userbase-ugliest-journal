@@ -42,40 +42,36 @@ const LoginPage = ({ user, setUser }) => {
       <Header title="Login" />
 
       <form onSubmit={handleSubmitLogin}>
-        <label>
-          Username: <br />
-          <input
-            type="text"
-            aria-label="Username"
-            id="usernameInput"
-            name="username"
-            disabled={formDisabled}
-          />
-        </label>
+        <p>
+          <label>
+            Username: <br />
+            <input
+              type="text"
+              aria-label="Username"
+              id="usernameInput"
+              name="username"
+              disabled={formDisabled}
+            />
+          </label>
+        </p>
 
-        <br />
-        <br />
-
-        <label>
-          Password: <br />
-          <input
-            type="password"
-            aria-label="Password"
-            id="passwordInput"
-            name="password"
-            disabled={formDisabled}
-          />
-        </label>
-
-        <br />
-        <br />
+        <p>
+          <label>
+            Password: <br />
+            <input
+              type="password"
+              aria-label="Password"
+              id="passwordInput"
+              name="password"
+              disabled={formDisabled}
+            />
+          </label>
+        </p>
 
         {error && (
-          <>
+          <p>
             <small>{error.message}</small>
-            <br />
-            <br />
-          </>
+          </p>
         )}
 
         <button type="submit" disabled={formDisabled}>

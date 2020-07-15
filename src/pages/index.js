@@ -6,7 +6,7 @@ import Header from "../components/Header";
 const IndexPage = () => (
   <>
     <Header />
-    <p>You simply must try this magnificent ugly todo app!</p>
+    <p>You simply must try this magnificent ugly journal app!</p>
     <p>
       Its an example to show how to use{" "}
       <a href="https://userbase.com/">Userbase</a> with{" "}

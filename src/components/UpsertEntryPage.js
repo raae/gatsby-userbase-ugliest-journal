@@ -7,7 +7,7 @@ import LoadingPage from "./LoadingPage";
 import Header from "./Header";
 import ErrorPage from "./ErrorPage";
 
-const TodoListPage = ({ user }) => {
+const JournalPage = ({ user }) => {
   const [todos, setTodos] = useState([]);
   const [error, setError] = useState(false);
   const [status, setStatus] = useState("initializing");
@@ -95,7 +95,7 @@ const TodoListPage = ({ user }) => {
 
   return (
     <>
-      <Header title="Todos" />
+      <Header />
 
       {error && <p>{error.message}</p>}
 
@@ -130,4 +130,4 @@ const TodoListPage = ({ user }) => {
   );
 };
 
-export default TodoListPage;
+export default JournalPage;

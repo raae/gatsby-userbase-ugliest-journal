@@ -18,7 +18,6 @@ const SignupPage = ({ user, setUser }) => {
     event.preventDefault();
 
     const username = event.target.elements.usernameInput.value;
-    const email = event.target.elements.emailInput.value;
     const password = event.target.elements.passwordInput.value;
 
     try {
@@ -26,7 +25,7 @@ const SignupPage = ({ user, setUser }) => {
       setError(false);
       setStatus("pending");
 
-      const user = await userbase.signUp({ username, email, password });
+      const user = await userbase.signUp({ username, password });
 
       console.log("Sign up succeeded", user.username);
       setUser(user);
@@ -34,7 +33,7 @@ const SignupPage = ({ user, setUser }) => {
     } catch (error) {
       console.log("Sign up failed", error);
       setError(error);
-      setStatus("error");
+      setStatus("idle");
     }
   };
 
@@ -43,55 +42,37 @@ const SignupPage = ({ user, setUser }) => {
       <Header title="Signup" />
 
       <form onSubmit={handleSubmitSignUp}>
-        <label>
-          Username: <br />
-          <input
-            type="text"
-            aria-label="Username"
-            id="usernameInput"
-            name="username"
-            disabled={formDisabled}
-            required
-          />
-        </label>
+        <p>
+          <label>
+            Username: <br />
+            <input
+              type="text"
+              aria-label="Username"
+              id="usernameInput"
+              name="username"
+              disabled={formDisabled}
+              required
+            />
+          </label>
+        </p>
 
-        <br />
-        <br />
-
-        <label>
-          Email: <br />
-          <input
-            type="email"
-            aria-label="Email"
-            id="emailInput"
-            name="email"
-            disabled={formDisabled}
-          />
-        </label>
-
-        <br />
-        <br />
-
-        <label>
-          Password: <br />
-          <input
-            type="password"
-            aria-label="Password"
-            id="passwordInput"
-            name="password"
-            required
-          />
-        </label>
-
-        <br />
-        <br />
+        <p>
+          <label>
+            Password: <br />
+            <input
+              type="password"
+              aria-label="Password"
+              id="passwordInput"
+              name="password"
+              required
+            />
+          </label>
+        </p>
 
         {error && (
-          <>
+          <p>
             <small>{error.message}</small>
-            <br />
-            <br />
-          </>
+          </p>
         )}
 
         <button type="submit" disabled={formDisabled}>

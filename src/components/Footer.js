@@ -4,6 +4,7 @@ import { Link } from "gatsby";
 const Footer = ({ user }) => {
   return (
     <footer>
+      <br />
       <hr />
       <p>
         <small>

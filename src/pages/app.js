@@ -1,8 +1,10 @@
-import React, { useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Router } from "@reach/router";
 import userbase from "userbase-js";
 
-import TodoListPage from "../components/TodoListPage";
+import JournalPage from "../components/JournalPage";
+import JournalEntryPage from "../components/JournalEntryPage";
+import JournalAddPage from "../components/JournalAddPage";
 import LoginPage from "../components/LoginPage";
 import SignupPage from "../components/SignupPage";
 import LoadingPage from "../components/LoadingPage";
@@ -12,10 +14,12 @@ import ErrorPage from "../components/ErrorPage";
 
 const App = () => {
   const [user, setUser] = useState(false);
+  const [entries, setEntries] = useState([]);
   const [error, setError] = useState(false);
-  const [status, setStatus] = useState("initializing");
+  const [status, setStatus] = useState("pending");
+  const loading = status === "pending";
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const init = async () => {
       try {
         console.log("Init Userbase");
@@ -30,7 +34,6 @@ const App = () => {
           console.log("with user", session.user.username);
           setUser(session.user);
         }
-
         setStatus("idle");
       } catch (error) {
         console.log("Init Userbase failed", error);
@@ -42,7 +45,49 @@ const App = () => {
     init();
   }, []);
 
-  if (status === "initializing") {
+  useEffect(() => {
+    let ignore = false;
+
+    const initEntries = async () => {
+      console.log("Open database");
+
+      setError(false);
+      setStatus("pending");
+
+      try {
+        await userbase.openDatabase({
+          databaseName: "entries",
+          changeHandler: (data) => {
+            console.log("Database changed", { ignore }, data);
+
+            // This is needed so we do not
+            // accidentally update an unmounted component.
+            if (ignore) return;
+
+            setEntries(data);
+            setError(false);
+            setStatus("idle");
+          },
+        });
+      } catch (error) {
+        console.log("Open database failed ", error);
+        setError(error);
+        setStatus("idle");
+      }
+    };
+
+    if (user) {
+      initEntries();
+    } else {
+      setEntries([]);
+    }
+
+    return () => {
+      ignore = true;
+    };
+  }, [user]);
+
+  if (loading) {
     return <LoadingPage />;
   }
 
@@ -52,16 +97,17 @@ const App = () => {
         <ErrorPage error={error} />
       ) : (
         <Router basepath="/app">
-          <TodoListPage path="/" user={user} />
           <LoginPage path="/login" setUser={setUser} user={user} />
           <SignupPage path="/signup" setUser={setUser} user={user} />
           <LogoutPage path="/logout" setUser={setUser} user={user} />
+
+          <JournalPage path="/" user={user} entries={entries} />
+          <JournalAddPage path="/add" user={user} />
+          <JournalEntryPage path="/:entryId" user={user} entries={entries} />
         </Router>
       )}
 
-      <br />
-
-      <Footer setUser={setUser} user={user} />
+      <Footer user={user} />
     </>
   );
 };
