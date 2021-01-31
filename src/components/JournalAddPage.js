@@ -30,7 +30,7 @@ const JournalAddPage = ({ user }) => {
       setStatus("adding");
 
       await userbase.insertItem({
-        databaseName: "entries",
+        databaseName: "journal",
         item: { date: date, entry: entry },
       });
       console.log("Insert entry succeeded");

@@ -6880,11 +6880,6 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
-lz-string@^1.4.4:
-  version "1.4.4"
-  resolved "https://registry.yarnpkg.com/lz-string/-/lz-string-1.4.4.tgz#c0d8eaf36059f705796e1e344811cf4c498d3a26"
-  integrity sha1-wNjq82BZ9wV5bh40SBHPTEmNOiY=
-
 magic-string@^0.25.3:
   version "0.25.7"
   resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.25.7.tgz#3f497d6fd34c669c6798dcb821f2ef31f5445051"
@@ -10780,18 +10775,17 @@ use@^3.1.0:
   resolved "https://registry.yarnpkg.com/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
   integrity sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ==
 
-userbase-js@^1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/userbase-js/-/userbase-js-1.4.1.tgz#7c3fdbf88ff5bc5e29e81892365538eae8880bce"
-  integrity sha512-cCtNc8/i+EqcsGuI8Q0bZ7xB8922+k4tHoisrZXHPE/ucE1DRJLGiVRxf6HyaclyBN+iLhI5zXtCXZPTPQNlzw==
+userbase-js@2.7.3:
+  version "2.7.3"
+  resolved "https://registry.yarnpkg.com/userbase-js/-/userbase-js-2.7.3.tgz#3fe21c493b233ab8bd3ad345e879e5a2b3303781"
+  integrity sha512-1q4Q/D7iHwojtEDapDicf3JrIbn4yx+sZR1t5+vztxvMgTOTQxu0YxZpdxE67OQK0ViZNYyGxN5Se03Hg6fO7Q==
   dependencies:
     "@babel/runtime" "^7.9.2"
     base64-arraybuffer "^0.2.0"
     diffie-hellman "^5.0.3"
-    lz-string "^1.4.4"
     scrypt-js "^3.0.0"
     sorted-array "^2.0.4"
-    uuid "^3.3.3"
+    uuid "^3.4.0"
 
 util-deprecate@^1.0.1, util-deprecate@~1.0.1:
   version "1.0.2"
@@ -10832,7 +10826,7 @@ utils-merge@1.0.1:
   resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
 
-uuid@3.4.0, uuid@^3.0.0, uuid@^3.3.2, uuid@^3.3.3, uuid@^3.4.0:
+uuid@3.4.0, uuid@^3.0.0, uuid@^3.3.2, uuid@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.4.0.tgz#b23e4358afa8a202fe7a100af1f5f883f02007ee"
   integrity sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==

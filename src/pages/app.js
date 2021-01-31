@@ -56,7 +56,7 @@ const App = () => {
 
       try {
         await userbase.openDatabase({
-          databaseName: "entries",
+          databaseName: "journal",
           changeHandler: (data) => {
             console.log("Database changed", { ignore }, data);
 

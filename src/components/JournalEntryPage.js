@@ -1,5 +1,5 @@
 import React, { useLayoutEffect } from "react";
-import { navigate, Link } from "gatsby";
+import { navigate } from "gatsby";
 
 import Header from "./Header";
 
