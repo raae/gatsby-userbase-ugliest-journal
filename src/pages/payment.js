@@ -6,6 +6,8 @@ import Header from "../components/Header";
 
 const BASE_URL = typeof window !== `undefined` ? window.location.origin : "";
 
+const stripePromise = loadStripe(process.env.GATSBY_STRIPE_KEY);
+
 const PaymentPage = () => {
   useEffect(() => {
     const init = async () => {
@@ -18,14 +20,16 @@ const PaymentPage = () => {
       } catch (error) {
         console.log("Init Userbase failed", error);
       }
-
-      await loadStripe(process.env.GATSBY_STRIPE_KEY);
     };
 
     init();
   }, []);
 
-  const purchaseSubscription = (priceId) => {
+  const purchaseSubscription = async (priceId) => {
+    // Wait for stripe to load before continuing
+    // as its needed by userbase.purchaseSubscription
+    await stripePromise;
+
     userbase
       .purchaseSubscription({
         successUrl: `${BASE_URL}/app`,
